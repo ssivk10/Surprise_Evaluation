@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter n:");
+        int n = sc.nextInt();
+        int i=0, j=0;
+        int x=1;
+        int rowbeg=0, rowend=n, colbeg=0, colend=n;
+        int[][]a= new int[n][n];
+        boolean chk=true;
+        while(chk){
+            if(i==rowbeg && j==colbeg){
+                while(j<colend){
+                    a[i][j++]=x++;
+                }
+                j--;
+                rowbeg++;
+                i++;
+            } if(i==rowbeg && j==colend-1){
+                while(i<rowend){
+                    a[i++][j]=x++;
+                }
+                i--;
+                colend--;
+                j--;
+            } if(i==rowend-1 && j==colend-1){
+                while(j>=colbeg){
+                    a[i][j--]=x++;
+                }
+                rowend--;
+                i--;
+                j++;
+            } if(i==rowend-1 && j==colbeg){
+                while(i>=rowbeg){
+                    a[i--][j]=x++;
+                }
+                colbeg++;
+                i++;
+                j++;
+            }
+            if(rowbeg>=rowend || colbeg>=colend){
+                chk=false;
+            }
+        }
+        for(i=0;i<n;i++){
+            for(j=0;j<n;j++){
+                System.out.print(a[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
+}
